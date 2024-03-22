@@ -5,9 +5,12 @@ import {FeedbackService} from "@/services/feedback.service";
 import {Rating} from "react-simple-star-rating";
 
 const EquipmentRating: FC <{equipment: IEquipment}> = ({equipment}) => {
-    /*Не считает рейтинг*/
+    //TODO разобраться как рейтинг вывести
     const [rating, setRating] = useState<number>(
         Math.round(
+            /*equipment.rents.map((rent, acc) => {
+                rent.feedbacks.reduce((feedback) => { acc + feedback.mark})
+            })*/
             equipment.feedbacks?.reduce((acc, feedback) =>
                 acc + feedback.mark, 0) / equipment.feedbacks?.length
         ) || 0
@@ -15,20 +18,22 @@ const EquipmentRating: FC <{equipment: IEquipment}> = ({equipment}) => {
 
     return(
         <div className='mb-2'>
-            <span className='mr-1'>
+            {!!equipment.rents.some((rent) => {rent.feedbacks.length}) &&
+            <span className='mr-1 inline-flex items-center'>
                 <Rating
                     readonly
                     initialValue={+rating}
                     SVGstyle={{display: "inline-block"}}
-                    size={34}
+                    size={20}
                     allowFraction
                     transition
                 />
                 <span
                     style={{color: '#FFBC0D'}}
+                    className='text-sm ml-1'
                 >{typeof rating === "number" && rating}</span>
-            </span>
-            <span>({equipment.feedbacks ? equipment.feedbacks.length : 0} reviews)</span>
+            </span>}
+            <span className='text-xs'>({equipment.feedbacks ? equipment.feedbacks.length : 0} reviews)</span>
         </div>
     )
 }

@@ -11,20 +11,22 @@ import {useAuth} from "@/hooks/useAuth";
 const FavoriteButton: FC<{idEquipment: number}> = ({idEquipment}) => {
     const {profile} = useProfile()
 
-    const {invalidateQueries} = useQueryClient()
+    const queryClient = useQueryClient()
 
     const {mutate} = useMutation({
         mutationKey: ['toggle favorite'],
         mutationFn: () => UserService.toggleFavorites(idEquipment),
-        onMutate: () => invalidateQueries({
+        onMutate: () => queryClient.invalidateQueries({
             queryKey: ['get profile']
         })
     })
 
-    if (!profile) return null
+    if (!profile) {
+        return null
+    }
 
     const isExists = profile.favorites.some(
-        favorite => favorite.id === idEquipment
+        favorite => favorite.idEquipment === idEquipment
     )
 
     return (

@@ -12,7 +12,7 @@ export  const cartSlice = createSlice({
         addToCart: (state, action:
         PayloadAction<IAddToCartPayload>) => {
             const isExistSize = state.items.some(
-                item => item.equipment.id ===action.payload.equipment.id
+                item => item.equipment.idEquipment ===action.payload.equipment.idEquipment
             )
 
             if (!isExistSize)

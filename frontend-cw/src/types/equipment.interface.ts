@@ -10,7 +10,7 @@ export enum EnumEquipmentStatus {
 }
 
 export interface IEquipment {
-    id: number
+    idEquipment: number
     equipmentName: IEquipmentName
     slug: string
     price: number

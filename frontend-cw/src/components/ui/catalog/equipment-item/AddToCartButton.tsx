@@ -11,8 +11,10 @@ const AddToCartButton: FC<{equipment: IEquipment}> = ({
     const {items} = useCart()
 
     const currentElement = items.find(
-        cartItem => cartItem.equipment.id === equipment.id
+        cartItem => cartItem.equipment.idEquipment === equipment.idEquipment
     )
+
+    console.log(currentElement?.equipment.idEquipment)
 
     return (
         <div>

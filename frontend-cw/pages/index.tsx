@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps<TypePaginationEquipments>
     = async () => {
   const {data} = await EquipmentService.getAll({
     page: 1,
-    perPage: 50
+    perPage: 4
   })
 
   return {
