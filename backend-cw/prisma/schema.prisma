@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  idRole Int @id @default(autoincrement()) @map("id_role")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title String @unique
+
+  users User[]
+}
+
+model User {
+  idUser Int @id @default(autoincrement()) @map("id_user")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  email String @unique
+  password String
+
+  name String @unique
+  avatarPath String @default("uploads/default-avatar.png") @map("avatar_path")
+
+  phone String @default("")
+
+  role Role? @relation(fields: [idRole], references: [idRole])
+  idRole Int? @map("id_role")
+
+  rents Rent[]
+  favorites Equipment[]
+}
+
+model EquipmentName {
+  idEquipmentName Int @id @default(autoincrement()) @map("id_equipment_name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name String @unique
+
+  equipments Equipment[]
+}
+
+// model Status {
+//   idStatus Int @id @default(autoincrement()) @map("id_status")
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+//
+//   title String @unique
+// }
+
+model RentalPoint {
+  idRentalPoint Int @id @default(autoincrement()) @map("id_rental_point")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  slug String @unique
+  city String
+  street String
+  house String
+
+  equipments Equipment[]
+}
+
+model Equipment {
+  idEquipment Int @id @default(autoincrement()) @map("id_equipment")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  images String[]
+  price Float @default(0.0)
+  slug String @unique
+  status EnumEquipmentStatus @default(FREE)
+
+  rentalPoint RentalPoint? @relation(fields: [idRentalPoint], references: [idRentalPoint])
+  idRentalPoint Int? @map("id_rental_point")
+
+  equipmentName EquipmentName? @relation(fields: [idEquipmentName], references: [idEquipmentName])
+  idEquipmentName Int? @map("id_equipment_name")
+
+  user User? @relation(fields: [idUser], references: [idUser])
+  idUser Int? @map("id_user")
+
+  rents Rent[]
+}
+
+enum EnumEquipmentStatus {
+  FREE
+  OCCUPIED
+  NOT_AVAILABLE
+}
+
+model Rent {
+  idRent Int @id @default(autoincrement()) @map("id_rent")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  startTime DateTime @map("start_time")
+  endTime DateTime @map("end_time")
+
+  user User? @relation(fields: [idUser], references: [idUser])
+  idUser Int? @map("id_user")
+
+  equipment Equipment? @relation(fields: [idEquipment], references: [idEquipment])
+  idEquipment Int? @map("id_equipment")
+
+  feedbacks Feedback[]
+}
+
+model Feedback {
+  idFeedback Int @id @default(autoincrement()) @map("id_feedback")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  mark Int
+  comment String
+
+  rent Rent? @relation(fields: [idRent], references: [idRent])
+  idRent Int? @map("id_rent")
+}
