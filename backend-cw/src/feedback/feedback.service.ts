@@ -1,6 +1,5 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
-import { generateSlug } from "../utils/generate-slug";
 import { returnFeedbackObject } from "./return-feedback.object";
 import { FeedbackDto } from "./feedback.dto";
 

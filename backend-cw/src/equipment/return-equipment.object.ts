@@ -16,7 +16,12 @@ export const equipmentReturnObject: Prisma.EquipmentSelect = {
   rentalPoint: {select: returnRentalPointObject},
   rents: {
     select: {
-      feedbacks: { select: returnFeedbackObject }
+      feedbacks: {
+        select: returnFeedbackObject,
+        orderBy: {
+          createdAt: 'desc'
+        }
+      }
     }
   }
 }

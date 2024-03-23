@@ -4,14 +4,15 @@ import { UserService } from "../../user/user.service";
 
 @Injectable()
 export class OnlyAdminGuard implements CanActivate {
-  async canActivate(
+  canActivate(
     context: ExecutionContext
-  ): Promise<boolean> {
+  ): boolean {
     const request = context.switchToHttp().getRequest<{user: User}>()
     const user = request.user
-    const role = await UserService.prototype.getRole(user.idUser)
 
-    if (role.title == process.env.ADMIN)
+    const role = user.idRole
+
+    if (role != +process.env.ID_ADMIN_ROLE)
       throw new ForbiddenException("Don't have rights")
 
     return true

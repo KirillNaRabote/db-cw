@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from "../prisma.service";
 import { RentDto } from "./rent.dto";
+import { EquipmentService } from "../equipment/equipment.service";
 
 @Injectable()
 export class RentService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService,
+              private equipmentService: EquipmentService) {}
 
   async getAll() {
     return this.prisma.rent.findMany({
@@ -54,6 +56,8 @@ export class RentService {
   }
 
   async placeRent(dto: RentDto, idUser: number) {
+    await this.equipmentService.byId(dto.idEquipment)
+
     return this.prisma.rent.create({
       data: {
         startTime: dto.startTime,

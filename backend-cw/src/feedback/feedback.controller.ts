@@ -2,12 +2,16 @@ import { Body, Controller, Get, HttpCode, Param, Post, UsePipes, ValidationPipe 
 import { FeedbackService } from './feedback.service';
 import { Auth } from "../auth/decorators/auth.decorator";
 import { FeedbackDto } from "./feedback.dto";
+import { TypeRole } from "../auth/auth.interface";
+import { EquipmentService } from "../equipment/equipment.service";
 
 @Controller('feedbacks')
 export class FeedbackController {
   constructor(private readonly feedbackService: FeedbackService) {}
 
+  @UsePipes(new ValidationPipe())
   @Get()
+  @Auth(<TypeRole>process.env.ADMIN)
   async getAll() {
     return this.feedbackService.getAll();
   }

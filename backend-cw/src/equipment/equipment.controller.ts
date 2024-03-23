@@ -15,6 +15,7 @@ import { EquipmentService } from './equipment.service';
 import { GetAllEquipmentDto } from "./dto/get-all.equipments.dto";
 import { Auth } from "../auth/decorators/auth.decorator";
 import { EquipmentDto } from "./dto/equipment.dto";
+import { TypeRole } from "../auth/auth.interface";
 
 @Controller('equipments')
 export class EquipmentController {
@@ -43,7 +44,7 @@ export class EquipmentController {
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   @Post()
   async createProduct() {
     return this.equipmentService.create()
@@ -52,7 +53,7 @@ export class EquipmentController {
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Put(':idEquipment')
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   async updateEquipment(@Param('idEquipment') idEquipment: string,
                         @Body() dto: EquipmentDto) {
     return this.equipmentService.update(+idEquipment, dto)
@@ -60,13 +61,13 @@ export class EquipmentController {
 
   @HttpCode(200)
   @Delete(':idEquipment')
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   async deleteEquipment(@Param('idEquipment') idEquipment: string) {
     return this.equipmentService.delete(+idEquipment)
   }
 
   @Get(':idEquipment')
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   async getEquipment(@Param('idEquipment') idEquipment: string) {
     return this.equipmentService.byId(+idEquipment)
   }

@@ -11,9 +11,16 @@ import { RentModule } from './rent/rent.module';
 import { RentalPointModule } from './rental_point/rental_point.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { PaginationModule } from './pagination/pagination.module';
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { path } from "app-root-path";
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, EquipmentModule, FeedbackModule, RentModule, RentalPointModule, StatisticsModule, PaginationModule],
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: `${path}/uploads`,
+      serveRoot: '/uploads'
+    }),
+    ConfigModule.forRoot(), AuthModule, UserModule, EquipmentModule, FeedbackModule, RentModule, RentalPointModule, StatisticsModule, PaginationModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
