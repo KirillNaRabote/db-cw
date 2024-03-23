@@ -5,7 +5,7 @@ const nextConfig = {
         SERVER_URL: process.env.SERVER_URL,
         APP_URL: process.env.APP_URL,
     },
-    images: {domains: ['loremflicker.com', 'www.aptronixindia.com', 'encrypted-tbn0.gstatic.com', 'loremflickr.com']}
+    images: {domains: ['loremflicker.com', 'www.aptronixindia.com', 'encrypted-tbn0.gstatic.com', 'loremflickr.com', 'avatars.githubusercontent.com']}
 };
 
 export default nextConfig;

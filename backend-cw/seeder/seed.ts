@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-import { Equipment, EquipmentName, Feedback, PrismaClient, Rent, RentalPoint } from "@prisma/client";
+import { Equipment, EquipmentName, Feedback, PrismaClient, Rent, RentalPoint, Role } from "@prisma/client";
 import { randomNumber } from "../src/utils/random-number";
 import { faker } from "@faker-js/faker";
 import { generateSlug } from "../src/utils/generate-slug";
@@ -118,13 +118,36 @@ const createRentalPoints = async ()=> {
   console.log(`Created ${rentalPoints.length} rentalPoints`)
 }
 
+const createRoles = async ()=> {
+  const roles: Role[] = []
+
+  const user = await prisma.role.create({
+    data: {
+      title: 'USER'
+    }
+  })
+
+  roles.push(user)
+
+  const admin = await prisma.role.create({
+    data: {
+      title: 'ADMIN'
+    }
+  })
+
+  roles.push(admin)
+
+  console.log(`Created ${roles.length} roles`)
+}
+
 async function main() {
   console.log('Start seeding...')
   // await createEquipmentNames()
   // await createRentalPoints()
   // await createEquipments(10)
   // await createRent()
-  await createFeedbacks()
+  //await createFeedbacks()
+  await createRoles()
 }
 
 main()

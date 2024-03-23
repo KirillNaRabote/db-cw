@@ -9,6 +9,7 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useAuth} from "@/hooks/useAuth";
 
 const FavoriteButton: FC<{idEquipment: number}> = ({idEquipment}) => {
+    //TODO неправильно красит избранное, запрос к базе проходит нормально
     const {profile} = useProfile()
 
     const queryClient = useQueryClient()

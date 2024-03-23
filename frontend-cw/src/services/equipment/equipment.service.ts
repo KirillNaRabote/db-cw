@@ -6,11 +6,13 @@ import {id} from "postcss-selector-parser";
 
 export const EquipmentService = {
     async getAll(queryData= {} as TypeEquipmentDataFilters) {
-        return axiosClassic<TypePaginationEquipments>({
+        const {data} = await axiosClassic<TypePaginationEquipments>({
             url: EQUIPMENTS,
             method: 'GET',
             params: queryData
         })
+
+        return data
     },
 
     async getSimilar(idEquipment: string | number) {

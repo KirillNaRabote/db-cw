@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import {IEquipment} from "@/types/equipment.interface";
-import FavoriteButton from "@/ui/catalog/equipment-item/FavoriteButton";
 import AddToCartButton from "@/ui/catalog/equipment-item/AddToCartButton";
 import EquipmentRating from "@/ui/catalog/equipment-item/EquipmentRating";
 import Image from "next/image";
@@ -14,7 +13,7 @@ const DynamicFavoriteButton = dynamic(() => import('./FavoriteButton'), {
 
 const EquipmentItem: FC<{equipment: IEquipment}> = ({equipment}) => {
     return (
-        <div className='shadow-xl'>
+        <div className='animate-scaleIn shadow-xl p-3'>
             <div className='bg-white rounded-xl relative overflow-hidden'>
                 <div className='absolute top-2 right-3 z-10'>
                     <DynamicFavoriteButton idEquipment={equipment.idEquipment}/>
@@ -24,6 +23,7 @@ const EquipmentItem: FC<{equipment: IEquipment}> = ({equipment}) => {
                 <Image
                     width={250}
                     height={250}
+                    className='size-full'
                     src={equipment.images[0]}
                     alt={equipment.equipmentName.name}
                 />

@@ -1,4 +1,4 @@
-import { IsDate } from "class-validator";
+import { IsDate, IsNumber } from "class-validator";
 
 export class RentDto {
   @IsDate()
@@ -6,4 +6,7 @@ export class RentDto {
 
   @IsDate()
   endTime: Date
+
+  @IsNumber()
+  idEquipment: number
 }

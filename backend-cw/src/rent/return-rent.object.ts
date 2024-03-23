@@ -4,3 +4,10 @@ export const returnRentObject: Prisma.RentSelect = {
   startTime: true,
   endTime: true
 }
+
+export const returnRentObjectFullest: Prisma.RentSelect = {
+  ...returnRentObject,
+  createdAt: true,
+  updatedAt: true,
+  feedbacks: true
+}

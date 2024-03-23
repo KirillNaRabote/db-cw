@@ -5,10 +5,11 @@ import { faker } from "@faker-js/faker";
 import { hash, verify } from "argon2";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "@prisma/client";
+import { UserService } from "../user/user.service";
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwt: JwtService) {}
+  constructor(private prisma: PrismaService, private jwt: JwtService, private userService: UserService) {}
 
 
   async login(dto: AuthDto) {
@@ -26,10 +27,8 @@ export class AuthService {
 
     if (!result) throw new UnauthorizedException('Invalid refresh token')
 
-    const user = await this.prisma.user.findUnique({
-      where: {
-        idUser: result.idUser
-      }
+    const user = await this.userService.byId(result.idUser, {
+      idRole: true
     })
 
     const tokens = await this.issueTokens(user.idUser)
@@ -42,7 +41,7 @@ export class AuthService {
 
 
   async register(dto: AuthDto) {
-    const oldUser = this.prisma.user.findUnique({
+    const oldUser = await this.prisma.user.findUnique({
       where: {
         email: dto.email
       }
@@ -55,10 +54,15 @@ export class AuthService {
     const user = await this.prisma.user.create({
       data: {
         email: dto.email,
-        name: faker.name.firstName(),
+        name: faker.person.firstName(),
         avatarPath: faker.image.avatar(),
         phone: faker.phone.number('+7 (###) ### ##-##'),
         password: await hash(dto.password),
+        role: {
+          connect: {
+            idRole: 1
+          }
+        }
       }
     })
 
@@ -88,6 +92,7 @@ export class AuthService {
     return {
       idUser: user.idUser,
       email: user.email,
+      idRole: user.idRole
     }
   }
 

@@ -22,6 +22,14 @@ export class UserController {
     return this.userService.updateProfile(idUser, dto);
   }
 
+  @UsePipes(new ValidationPipe())
+  @Auth()
+  @HttpCode(200)
+  @Get('/role')
+  async getRole(@CurrentUser('idUser') idUser: number) {
+    return this.userService.getRole(idUser);
+  }
+
   @HttpCode(200)
   @Auth()
   @Patch('profile/favorites/:idEquipment')

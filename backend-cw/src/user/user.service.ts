@@ -25,6 +25,11 @@ export class UserService {
                 name: true,
               }
             },
+            rentalPoint: {
+              select: {
+                slug: true
+              }
+            },
             price: true,
             images: true,
             slug: true,
@@ -37,6 +42,26 @@ export class UserService {
     if (!user) throw new Error('User not found')
 
     return user
+  }
+
+  async getRole(idUser: number) {
+    const user = await this.byId(idUser)
+
+    if (!user.idRole)
+      throw new Error("User don't have role")
+
+    const role = await this.prisma.role.findUnique({
+      where: {
+        idRole: user.idRole
+      },
+      select: {
+        title: true
+      }
+    })
+
+    if (!role) throw new Error('Role note found')
+
+    return role
   }
 
   async updateProfile(idUser: number, dto: UserDto) {
@@ -59,7 +84,8 @@ export class UserService {
         name: dto.name,
         avatarPath: dto.avatarPath,
         phone: dto.phone,
-        password: dto.password ? await hash(dto.password) : user.password
+        password: dto.password ? await hash(dto.password) : user.password,
+        idRole: dto.idRole
       }
     })
   }

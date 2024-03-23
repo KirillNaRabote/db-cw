@@ -1,5 +1,5 @@
 export interface IRentalPoint {
-    id: number
+    idRentalPoint: number
     city: string
     street: string
     house: string

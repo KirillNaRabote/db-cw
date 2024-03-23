@@ -14,8 +14,6 @@ const AddToCartButton: FC<{equipment: IEquipment}> = ({
         cartItem => cartItem.equipment.idEquipment === equipment.idEquipment
     )
 
-    console.log(currentElement?.equipment.idEquipment)
-
     return (
         <div>
             <button

@@ -10,7 +10,7 @@ const HomePage: NextPage<TypePaginationEquipments> = ({length, equipments}) => {
 
 export const getStaticProps: GetStaticProps<TypePaginationEquipments>
     = async () => {
-  const {data} = await EquipmentService.getAll({
+  const data = await EquipmentService.getAll({
     page: 1,
     perPage: 4
   })

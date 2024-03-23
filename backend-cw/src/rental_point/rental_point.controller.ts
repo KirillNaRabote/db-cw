@@ -14,6 +14,7 @@ import {
 import { RentalPointService } from './rental_point.service';
 import { Auth } from "../auth/decorators/auth.decorator";
 import { RentalPointDto } from "./rental-point.dto";
+import { TypeRole } from "../auth/auth.interface";
 
 @Controller('rental-points')
 export class RentalPointController {
@@ -35,7 +36,7 @@ export class RentalPointController {
     return this.rentalPointService.byId(+idRentalPoint);
   }
 
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   @HttpCode(200)
   @Post()
   async createRentalPoint() {
@@ -43,7 +44,7 @@ export class RentalPointController {
   }
 
   @UsePipes(new ValidationPipe())
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   @HttpCode(200)
   @Put(':idRentalPoint')
   async updateRentalPoint(@Param('idRentalPoint') idRentalPoint: number, @Body() dto: RentalPointDto) {
@@ -51,7 +52,7 @@ export class RentalPointController {
   }
 
   @HttpCode(200)
-  @Auth()
+  @Auth(<TypeRole>process.env.ADMIN)
   @Delete(':idRentalPoint')
   async delete(@Param('idRentalPoint') idRentalPoint: number) {
     return this.rentalPointService.delete(+idRentalPoint);
