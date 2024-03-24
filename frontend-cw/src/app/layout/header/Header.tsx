@@ -2,9 +2,9 @@ import {FC} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {AiOutlineHeart} from "react-icons/ai";
-import HeaderCart from "@/ui/layout/header/cart/cart-item/HeaderCart";
-import Search from "@/ui/layout/header/search/Search";
-import HeaderProfile from "@/ui/layout/header/HeaderProfile";
+import Search from "@/app/layout/header/search/Search";
+import HeaderCart from "@/app/layout/header/cart/cart-item/HeaderCart";
+import HeaderProfile from "@/app/layout/header/HeaderProfile";
 
 const Header: FC = () => {
     return (

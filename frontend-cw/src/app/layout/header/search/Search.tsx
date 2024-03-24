@@ -16,6 +16,7 @@ const Search: FC = () => {
                 <input
                     className='bg-black h-9 p-3 rounded-l-xl outline-none text-white'
                     placeholder='Поиск'
+                    value={searchTerm}
                     onChange={event => setSearchTerm(event.target.value)}
                 />
                 <button

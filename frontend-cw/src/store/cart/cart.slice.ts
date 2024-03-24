@@ -5,7 +5,7 @@ const initialState: ICartInitialState = {
     items: []
 }
 
-export  const cartSlice = createSlice({
+export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {

@@ -13,7 +13,6 @@ async function getEquipments() {
     const data = await EquipmentService.getAll({
         page: 1,
         perPage: 4,
-        ratings: ''
     })
 
     return data
@@ -22,5 +21,5 @@ async function getEquipments() {
 export default async function HomePage() {
     const data = await getEquipments()
 
-    return <Home equipments={data.equipments} length={data.length}/>
+    return <Home equipments={data?.equipments} length={data?.length}/>
 }

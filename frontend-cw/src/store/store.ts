@@ -23,7 +23,7 @@ let mainReducer = combinedReducer
 
 if (isClient) {
     const {persistReducer} = require('redux-persist')
-    const storage = require('redux-persist/lib/storage')
+    const storage = require('redux-persist/lib/storage').default
 
     const persistConfig = {
         key: 'coursework',

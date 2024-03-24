@@ -1,5 +1,7 @@
+'use client'
+
 import {FC, useState} from "react";
-import {IEquipment, TypePaginationEquipments} from "@/types/equipment.interface";
+import {TypePaginationEquipments} from "@/types/equipment.interface";
 import Loader from "@/ui/Loader";
 import EquipmentItem from "@/ui/catalog/equipment-item/EquipmentItem";
 import Heading from "@/ui/Heading";
@@ -26,6 +28,7 @@ const CatalogPagination: FC<ICatalogPagination>
             page,
             perPage: 4,
             sort: sortType,
+            ratings: ''
         }), initialData: data
         }
     )

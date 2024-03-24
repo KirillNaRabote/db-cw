@@ -2,7 +2,7 @@ import {FC} from "react";
 import {ICartItem} from "@/types/cart.interface";
 import Image from "next/image";
 import {convertPrice} from "@/utils/convertPrice";
-import CartActions from "@/ui/layout/header/cart/cart-item/cart-action/CartActions";
+import CartActions from "@/app/layout/header/cart/cart-item/cart-action/CartActions";
 
 const CartItem: FC<{item: ICartItem}> = ({item}) => {
     return (

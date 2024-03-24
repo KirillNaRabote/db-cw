@@ -3,7 +3,7 @@
 import {FC} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {RentalPointService} from "@/services/rentalPoint.service";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {useActions} from "@/hooks/useActions";
 import {useAuth} from "@/hooks/useAuth";
 import Loader from "@/ui/Loader";
@@ -18,7 +18,7 @@ const Sidebar: FC = () => {
         select: ({data}) => data
     })
 
-    const asPath = useRouter()
+    const pathName = usePathname()
 
     const {user} = useAuth()
     const {logout} = useActions()
@@ -44,7 +44,7 @@ const Sidebar: FC = () => {
                                 >
                                     <Link
                                         className={cn('lock text-lg my-3 px-10 hover:text-primary transition-colors duration-200',
-                                        asPath === `/rental-point/${rentalPoint.slug}`
+                                        pathName === `/rental-point/${rentalPoint.slug}`
                                             ? 'text-primary'
                                             : 'text-white')}
                                         href={`/rental-point/${rentalPoint.slug}`}

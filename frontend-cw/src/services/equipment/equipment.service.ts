@@ -1,8 +1,6 @@
 import {axiosClassic, instance} from "@/api/api.interceptor";
-import {IRentalPoint} from "@/types/rentalPoint.inteface";
 import {EQUIPMENTS, TypeEquipmentData, TypeEquipmentDataFilters} from "@/services/equipment/equipment.types";
 import {IEquipment, TypePaginationEquipments} from "@/types/equipment.interface";
-import {id} from "postcss-selector-parser";
 
 export const EquipmentService = {
     async getAll(queryData= {} as TypeEquipmentDataFilters) {

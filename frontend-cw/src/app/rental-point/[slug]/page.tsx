@@ -2,8 +2,6 @@ import {Metadata} from "next";
 import {RentalPointService} from "@/services/rentalPoint.service";
 import {IPageSlugParam, TypeParamSlug} from "@/types/page-params";
 import {EquipmentService} from "@/services/equipment/equipment.service";
-import {awaitExpression} from "@babel/types";
-import Layout from "@/ui/layout/Layout";
 import Catalog from "@/ui/catalog/Catalog";
 
 export const revalidate = 60
@@ -41,11 +39,12 @@ export async function generateMetadata({params} : IPageSlugParam): Promise<Metad
     }
 }
 
-export default function RentalPointPage({params} : IPageSlugParam) {
+export default async function RentalPointPage({params} : IPageSlugParam) {
     const data = await getEquipments(params)
-    return <Layout>
+
+    return <div>
         <Catalog equipments={data.equipments || []} title={data.rentalPoint.city + ', ' + data.rentalPoint.street + ', ' + data.rentalPoint.house}/>
-    </Layout>
+    </div>
 
     return <></>
 }

@@ -2,7 +2,6 @@
 
 import {useQuery} from "@tanstack/react-query";
 import {RentService} from "@/services/rent.service";
-import Layout from "@/ui/layout/Layout";
 import Heading from "@/ui/Heading";
 import {convertPrice} from "@/utils/convertPrice";
 
@@ -15,7 +14,7 @@ export default function MyRents({}: IMyOrders) {
         select: data => data.data
     })
 
-    return <Layout>
+    return <div>
         <Heading>My rents</Heading>
         <section>
             {rents?.length ? (
@@ -35,5 +34,5 @@ export default function MyRents({}: IMyOrders) {
                 <div>Rent not found</div>
             )}
         </section>
-    </Layout>
+    </div>
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import {FC} from "react";
 import {useOutside} from "@/hooks/useOutside";
 import {useCart} from "@/hooks/useCart";
@@ -6,7 +8,11 @@ import cn from "clsx";
 import SquareButton from "@/ui/button/SquareButton";
 import {convertPrice} from "@/utils/convertPrice";
 import Button from "@/ui/button/Button";
-import CartItem from "@/ui/layout/header/cart/cart-item/CartItem";
+import CartItem from "@/app/layout/header/cart/cart-item/CartItem";
+import {useActions} from "@/hooks/useActions";
+import {useRouter} from "next/navigation";
+import {useMutation} from "@tanstack/react-query";
+import {RentService} from "@/services/rent.service";
 
 const HeaderCart: FC = () => {
     const {
@@ -16,6 +22,10 @@ const HeaderCart: FC = () => {
         = useOutside(false)
 
     const {items, total} = useCart()
+
+    const {reset} = useActions()
+
+    const {push} = useRouter()
 
     return (
         <div className='relative' ref={ref}>
