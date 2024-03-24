@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,12 +23,28 @@
       }
     ],
     "paths": {
-      "@/layout/*": ["components/layout/*"],
-      "@/ui/*": ["components/ui/*"],
-      "@/screens/*": ["components/screens/*"],
-      "@/*": ["./*"]
-    }
+      "@/layout/*": [
+        "components/layout/*"
+      ],
+      "@/ui/*": [
+        "components/ui/*"
+      ],
+      "@/screens/*": [
+        "components/screens/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -6,7 +6,6 @@ import {Provider} from "react-redux";
 import {persistor, store} from "@/store/store";
 import {PersistGate} from 'redux-persist/integration/react'
 import AuthProvider from "@/providers/auth-provider/AuthProvider";
-import {TypeComponentAuthFields} from "@/providers/auth-provider/auth-page.types";
 
 const queryClient = new QueryClient({
   defaultOptions: {

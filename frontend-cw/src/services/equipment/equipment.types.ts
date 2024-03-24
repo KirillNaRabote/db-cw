@@ -19,8 +19,12 @@ export enum EnumEquipmentSort {
 }
 
 export type TypeEquipmentDataFilters = {
-    sort?: EnumEquipmentSort,
+    sort?: EnumEquipmentSort | string,
     searchTerm?: string,
     page?: string | number,
     perPage?: string | number
+    ratings?: string
+    minPrice?: string
+    maxPrice?: string
+    idRentalPoint?: string
 }

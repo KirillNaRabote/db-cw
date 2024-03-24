@@ -1,13 +1,14 @@
 import Cookies from "js-cookie";
 import {IAuthResponse, ITokens} from "@/store/user/user.interface";
+import {ACCESS_TOKEN, REFRESH_TOKEN} from "@/constants/token.constants";
 
 export const getAccessToken = () => {
-    const accessToken = Cookies.get('accessToken')
+    const accessToken = Cookies.get(ACCESS_TOKEN)
     return accessToken || null
 }
 
 export const getRefreshToken = () => {
-    const refreshToken = Cookies.get('refreshToken')
+    const refreshToken = Cookies.get(REFRESH_TOKEN)
     return refreshToken || null
 }
 
@@ -16,13 +17,13 @@ export const getUserFromStorage = () => {
 }
 
 export const saveTokensStorage = (data: ITokens) => {
-    Cookies.set('accessToken', data.accessToken)
-    Cookies.set('refreshToken', data.refreshToken)
+    Cookies.set(ACCESS_TOKEN, data.accessToken)
+    Cookies.set(REFRESH_TOKEN, data.refreshToken)
 }
 
 export const removeFromStorage = () => {
-    Cookies.remove('accessToken')
-    Cookies.remove('refreshToken')
+    Cookies.remove(ACCESS_TOKEN)
+    Cookies.remove(REFRESH_TOKEN)
     localStorage.removeItem('user')
 }
 

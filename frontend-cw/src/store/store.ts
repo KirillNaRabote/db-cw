@@ -3,33 +3,42 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
     FLUSH,
     PAUSE,
-    PERSIST, persistReducer,
+    PERSIST, 
     persistStore, PURGE,
     REGISTER,
     REHYDRATE
 } from 'redux-persist'
 
-import storage from'redux-persist/lib/storage'
-/*import { carouselSlice } from './carousel/carousel.slice'*/
 import {userSlice} from "@/store/user/user.slice";
 import {cartSlice} from "@/store/cart/cart.slice";
 
-const persistConfig = {
-    key: 'coursework',
-    storage,
-    whitelist: []
-}
+const isClient = typeof window !== 'undefined'
 
-const rootReducer = combineReducers({
+const combinedReducer = combineReducers({
     /*carousel: carouselSlice.reducer,*/
     user: userSlice.reducer,
     cart: cartSlice.reducer,
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+let mainReducer = combinedReducer
+
+if (isClient) {
+    const {persistReducer} = require('redux-persist')
+    const storage = require('redux-persist/lib/storage')
+
+    const persistConfig = {
+        key: 'coursework',
+        storage,
+        whitelist: ['cart']
+    }
+
+    mainReducer = persistReducer(persistConfig, combinedReducer)
+}
+
+
 
 export const store = configureStore({
-    reducer: persistedReducer,
+    reducer: mainReducer,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: {
@@ -40,4 +49,4 @@ export const store = configureStore({
 
 export const persistor = persistStore(store)
 
-export type TypeRootState = ReturnType<typeof rootReducer>
+export type TypeRootState = ReturnType<typeof mainReducer>

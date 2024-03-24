@@ -1,7 +1,6 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IEquipment} from "@/types/equipment.interface";
 import {IRentalPoint} from "@/types/rentalPoint.inteface";
-import Meta from "@/ui/Meta";
 import Layout from "@/ui/layout/Layout";
 import Catalog from "@/ui/catalog/Catalog";
 import {RentalPointService} from "@/services/rentalPoint.service";
@@ -15,14 +14,10 @@ const RentalPointPage: NextPage<{
 }> = ({equipments, rentalPoint, length}) => {
     const rentalPointName = rentalPoint.city + ' '+ rentalPoint.street + ' ' + rentalPoint.house
     return (
-        <Meta
-            title={rentalPointName}
-        >
-            <Layout>
-                {/*<CatalogPagination data={{equipments, length}} title={rentalPointName}/>*/}
-                <Catalog equipments={equipments || []} title={rentalPointName}/>
-            </Layout>
-        </Meta>
+        <Layout>
+            {/*<CatalogPagination data={{equipments, length}} title={rentalPointName}/>*/}
+            <Catalog equipments={equipments || []} title={rentalPointName}/>
+        </Layout>
     )
 }
 

@@ -1,7 +1,12 @@
 import {IUser} from "@/types/user.interface";
 
+export interface IRole {
+    title: string
+}
+
 export interface IUserState {
     email: string
+    role: IRole
 }
 
 export interface ITokens {
