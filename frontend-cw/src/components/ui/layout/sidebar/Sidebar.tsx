@@ -1,7 +1,9 @@
+'use client'
+
 import {FC} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {RentalPointService} from "@/services/rentalPoint.service";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 import {useActions} from "@/hooks/useActions";
 import {useAuth} from "@/hooks/useAuth";
 import Loader from "@/ui/Loader";
@@ -16,7 +18,7 @@ const Sidebar: FC = () => {
         select: ({data}) => data
     })
 
-    const {asPath} = useRouter()
+    const asPath = useRouter()
 
     const {user} = useAuth()
     const {logout} = useActions()

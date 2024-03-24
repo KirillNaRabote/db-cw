@@ -1,3 +1,5 @@
+'use client'
+
 import {FC, useState} from "react";
 import Button from "@/ui/button/Button";
 import Heading from "@/ui/Heading";
@@ -6,10 +8,10 @@ import {useActions} from "@/hooks/useActions";
 import {useForm, SubmitHandler} from 'react-hook-form'
 import {IEmailPassword} from "@/store/user/user.interface";
 import Field from "@/ui/input/Field";
-import {validEmail} from "@/screens/auth/valid-email";
 import Loader from "@/ui/Loader";
 import cn from "clsx";
-import {useAuthRedirect} from "@/screens/auth/useAuthredirect";
+import {useAuthRedirect} from "@/app/auth/useAuthredirect";
+import {validEmail} from "@/app/auth/valid-email";
 
 const Auth: FC = () => {
     useAuthRedirect()

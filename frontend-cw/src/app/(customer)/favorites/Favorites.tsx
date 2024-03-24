@@ -1,10 +1,10 @@
-import {NextPage} from "next";
 import {useProfile} from "@/hooks/useProfile";
-import {NextPageAuth} from "@/providers/auth-provider/auth-page.types";
-import Layout from "@/ui/layout/Layout";
 import Catalog from "@/ui/catalog/Catalog";
+import Layout from "@/ui/layout/Layout";
 
-const FavoritesPage: NextPageAuth = () => {
+interface IFavorites {}
+
+export default function Favorites({}: IFavorites) {
     const {profile} = useProfile()
 
     return (
@@ -13,7 +13,3 @@ const FavoritesPage: NextPageAuth = () => {
         </Layout>
     )
 }
-
-FavoritesPage.isOnlyUser = true
-
-export default FavoritesPage

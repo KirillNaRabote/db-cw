@@ -1,5 +1,6 @@
 import {IEquipment} from "@/types/equipment.interface";
 import {IRent} from "@/types/rent.interface";
+import {IRole} from "@/store/user/user.interface";
 
 export interface IUser {
     id: number
@@ -7,6 +8,7 @@ export interface IUser {
     name: string
     avatarPath: string
     phone: string
+    role: IRole
 }
 
 export interface IFullUser extends IUser {

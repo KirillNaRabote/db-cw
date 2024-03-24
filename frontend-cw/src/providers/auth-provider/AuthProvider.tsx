@@ -8,7 +8,7 @@ import {getAccessToken, getRefreshToken} from "@/services/auth/auth.helper";
 import {usePathname, useRouter} from "next/navigation";
 import {protectedRoutes} from "@/providers/auth-provider/protected-routes.data";
 import {ADMIN_PANEL_URL} from "@/config/url.config";
-import {ADMIN} from "@/constants/app.constants";
+import {ADMIN} from "@/constants/seo.constants";
 import NotFound from "@/app/not-found";
 
 const AuthProvider:

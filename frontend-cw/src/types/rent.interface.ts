@@ -3,7 +3,8 @@ import {IUser} from "@/types/user.interface";
 import {IFeedback} from "@/types/feedback.interface";
 
 export interface IRent {
-    id: number
+    idRent: number
+    createdAt: string
     startTime: string
     endTime: string
     equipment: IEquipment

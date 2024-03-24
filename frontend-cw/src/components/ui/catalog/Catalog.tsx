@@ -1,3 +1,5 @@
+'use client'
+
 import {FC} from "react";
 import {IEquipment} from "@/types/equipment.interface";
 import Loader from "@/ui/Loader";

@@ -2,7 +2,7 @@ import {PropsWithChildren} from "react";
 import "@/assets/styles/globals.scss";
 import Providers from "@/providers/Providers";
 import {Metadata} from "next";
-import {SITE_NAME} from "@/constants/app.constants";
+import {SITE_NAME} from "@/constants/seo.constants";
 import {getSiteUrl} from "@/config/url.config";
 
 export const metadata: Metadata = {
