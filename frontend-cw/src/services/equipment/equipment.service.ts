@@ -21,10 +21,12 @@ export const EquipmentService = {
     },
 
     async getBySlug(slug: string) {
-        return axiosClassic<IEquipment>({
+        const {data} = await axiosClassic<IEquipment>({
             url: `${EQUIPMENTS}/by-slug/${slug}`,
             method: 'GET'
         })
+
+        return data
     },
 
     async getByRentalPoint(slugRentalPoint: string) {

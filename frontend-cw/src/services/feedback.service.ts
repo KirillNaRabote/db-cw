@@ -10,7 +10,7 @@ type TypeData = {
 
 export const FeedbackService = {
     async getAll() {
-        return axiosClassic<IFeedback[]>({
+        return instance<IFeedback[]>({
             url: FEEDBACKS,
             method: 'GET'
         })

@@ -16,6 +16,11 @@ export class UserService {
       },
       select: {
         ...returnUserObject,
+        role: {
+          select: {
+            title: true
+          }
+        },
         favorites: {
           select: {
             idEquipment: true,

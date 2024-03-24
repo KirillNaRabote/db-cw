@@ -28,6 +28,11 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    zIndex: {
+      1: 1,
+      2: 2,
+      3: 3
+    },
     keyframes: {
       animationOpacity: {
         from: {opacity: '0.2'},

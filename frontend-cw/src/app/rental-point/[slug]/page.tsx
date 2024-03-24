@@ -33,7 +33,7 @@ export async function generateMetadata({params} : IPageSlugParam): Promise<Metad
         title: rentalPoint.city + ', ' + rentalPoint.street + ', ' + rentalPoint.house,
         description: `Random description about ${rentalPoint.city}, ${rentalPoint.street}, ${rentalPoint.house}`,
         openGraph: {
-            images: equipments[0].images,
+            images: equipments[0]?.images,
             description: `Random description about ${rentalPoint.city}, ${rentalPoint.street}, ${rentalPoint.house}`
         }
     }

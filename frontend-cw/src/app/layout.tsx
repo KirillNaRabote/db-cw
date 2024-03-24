@@ -6,6 +6,7 @@ import {SITE_NAME} from "@/constants/seo.constants";
 import {getSiteUrl} from "@/config/url.config";
 import Header from "@/app/layout/header/Header";
 import Sidebar from "@/app/layout/sidebar/Sidebar";
+import Pagination from "@/app/explorer/pagination/Pagination";
 
 export const metadata: Metadata = {
     icons: {
@@ -28,7 +29,7 @@ export default function RootLayout({children}: PropsWithChildren<unknown>) {
         <html lang='en'>
             <body>
             <Providers>
-                <div>
+                <div className='bg-secondary'>
                     <Header/>
                     <div
                         className='grid'
@@ -37,7 +38,9 @@ export default function RootLayout({children}: PropsWithChildren<unknown>) {
                         }}
                     >
                         <Sidebar/>
-                        <main className='p-12'>{children}</main>
+                        <main
+                            className='rounded-tl-lg p-12 pb-52 bg-bg-color bg-white'
+                        >{children}</main>
                     </div>
                 </div>
             </Providers>

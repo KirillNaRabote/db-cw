@@ -21,7 +21,7 @@ const Search: FC = () => {
                 />
                 <button
                     className='flex bg-primary h-9 w-10 justify-center items-center rounded-r-xl'
-                    onClick={() => push(`/q?term=${searchTerm}`)}
+                    onClick={() => push(`/explorer?searchTerm=${searchTerm}`)}
                 ><FaSearch/></button>
             </form>
         </div>

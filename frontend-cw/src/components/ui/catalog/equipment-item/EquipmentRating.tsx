@@ -4,15 +4,20 @@ import {useQuery} from "@tanstack/react-query";
 import {FeedbackService} from "@/services/feedback.service";
 import {Rating} from "react-simple-star-rating";
 
-const EquipmentRating: FC <{equipment: IEquipment}> = ({equipment}) => {
+interface IEquipmentsRating {
+    equipment: IEquipment
+    isText?: boolean
+}
+
+const EquipmentRating: FC <IEquipmentsRating> = ({equipment, isText = false}) => {
     //TODO разобраться как рейтинг вывести
     const [rating, setRating] = useState<number>(
         Math.round(
             /*equipment.rents.map((rent, acc) => {
                 rent.feedbacks.reduce((feedback) => { acc + feedback.mark})
             })*/
-            equipment.feedbacks?.reduce((acc, feedback) =>
-                acc + feedback.mark, 0) / equipment.feedbacks?.length
+            equipment?.feedbacks?.reduce((acc, feedback) =>
+                acc + feedback.mark, 0) / equipment?.feedbacks?.length
         ) || 0
     )
 
@@ -33,7 +38,7 @@ const EquipmentRating: FC <{equipment: IEquipment}> = ({equipment}) => {
                     className='text-sm ml-1'
                 >{typeof rating === "number" && rating}</span>
             </span>}
-            <span className='text-xs'>({equipment.feedbacks ? equipment.feedbacks.length : 0} reviews)</span>
+            {isText && (<span className='text-xs'>({equipment.feedbacks ? equipment.feedbacks.length : 0} reviews)</span>)}
         </div>
     )
 }

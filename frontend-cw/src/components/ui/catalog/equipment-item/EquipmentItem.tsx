@@ -6,24 +6,21 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {convertPrice} from "@/utils/convertPrice";
-
-const DynamicFavoriteButton = dynamic(() => import('./FavoriteButton'), {
-    ssr: false
-})
+import FavoriteButton from "@/ui/catalog/equipment-item/FavoriteButton";
 
 const EquipmentItem: FC<{equipment: IEquipment}> = ({equipment}) => {
     return (
         <div className='animate-scaleIn shadow-xl p-3'>
             <div className='bg-white rounded-xl relative overflow-hidden'>
-                <div className='absolute top-2 right-3 z-10'>
-                    <DynamicFavoriteButton idEquipment={equipment.idEquipment}/>
+                <div className='absolute top-2 right-3 z-1'>
+                    <FavoriteButton idEquipment={equipment.idEquipment}/>
                     <AddToCartButton equipment={equipment}/>
                 </div>
                 <Link href={`/equipment/${equipment.slug}`}>
                 <Image
                     width={250}
                     height={250}
-                    className='size-full'
+                    className='size-full block mx-auto'
                     src={equipment.images[0]}
                     alt={equipment.equipmentName.name}
                 />
@@ -36,7 +33,7 @@ const EquipmentItem: FC<{equipment: IEquipment}> = ({equipment}) => {
             >
                 {equipment.rentalPoint.city + ', '+ equipment.rentalPoint.street + ', ' + equipment.rentalPoint.house}
             </Link>
-            <EquipmentRating equipment={equipment}/>
+            <EquipmentRating equipment={equipment} isText={true}/>
             <div className='text-2xl font-semibold flex'>{convertPrice(equipment.price)}<div className='text-sm align-bottom'>/мин</div> </div>
         </div>
     )

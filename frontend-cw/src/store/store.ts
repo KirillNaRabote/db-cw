@@ -10,6 +10,7 @@ import {
 
 import {userSlice} from "@/store/user/user.slice";
 import {cartSlice} from "@/store/cart/cart.slice";
+import {filterSlice} from "@/store/filters/filters.slice";
 
 const isClient = typeof window !== 'undefined'
 
@@ -17,6 +18,7 @@ const combinedReducer = combineReducers({
     /*carousel: carouselSlice.reducer,*/
     user: userSlice.reducer,
     cart: cartSlice.reducer,
+    filters: filterSlice.reducer
 })
 
 let mainReducer = combinedReducer

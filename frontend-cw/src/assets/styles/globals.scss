@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg-color text-base text-black;
+  @apply overflow-x-hidden bg-bg-color text-base text-black;
   font-family: 'Golos Text', sans-serif;
 }
 

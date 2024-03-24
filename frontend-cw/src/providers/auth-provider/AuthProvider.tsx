@@ -35,7 +35,7 @@ const AuthProvider:
 
     if (!isProtectedRoute && !isAdminRoute) return <>{children}</>
 
-    if (user?.role.title === ADMIN) return <>{children}</>
+    if (user?.role?.title === ADMIN) return <>{children}</>
     if (user && isProtectedRoute) return <>{children}</>
 
     if (user && isAdminRoute) return <NotFound/>

@@ -8,12 +8,12 @@ import equipmentItem from "@/ui/catalog/equipment-item/EquipmentItem";
 import Heading from "@/ui/Heading";
 import Button from "@/ui/button/Button";
 import SortDropdown from "@/ui/catalog/SortDropdown";
+import EquipmentExplorer from "@/app/explorer/EquipmentExplorer";
 
 interface ICatalog {
     equipments: IEquipment[]
     isLoading?: boolean
     title?: string
-    isPagination?: boolean
 }
 
 const Catalog: FC<ICatalog>
@@ -23,6 +23,7 @@ const Catalog: FC<ICatalog>
     return (
         <section>
             {title && <Heading className='mb-5'>{title}</Heading>}
+            {/*<EquipmentExplorer initialEquipments={{equipments, length}}></EquipmentExplorer>*/}
             {equipments.length ? (
                 <>
                 <div className='grid grid-cols-4 gap-10'>

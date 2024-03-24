@@ -13,6 +13,8 @@ import {useActions} from "@/hooks/useActions";
 import {useRouter} from "next/navigation";
 import {useMutation} from "@tanstack/react-query";
 import {RentService} from "@/services/rent.service";
+import Link from "next/link";
+import styles from './Cart.module.scss'
 
 const HeaderCart: FC = () => {
     const {
@@ -35,13 +37,16 @@ const HeaderCart: FC = () => {
                 number = {items.length}
             />
 
+            {isShow &&
             <div
-                className={cn('absolute top-[4.2rem] w-80 -left-[12.5rem] bg-secondary rounded-xl px-5 py-3 text-sm menu z-20 text-white',
+                className={cn('absolute top-[4.2rem] w-80 -left-[12.5rem] bg-secondary rounded-xl px-5 py-3 text-sm menu z-3 text-white',
                     isShow ? 'open-menu' : 'close-menu')}
+                /*className={cn('cartWrapper')}*/
+                /*className={styles.cartWrapper}*/
             >
                 <div className='font-normal text-lg mb-5'>My cart</div>
 
-                <div className=''>
+                <div /*className={styles.cart}*/>
                     {items.length ? (
                         items.map(item => <CartItem item={item} key={item.id} />)
                     ) : (
@@ -53,12 +58,14 @@ const HeaderCart: FC = () => {
                     <div>Total:</div>
                     <div>{convertPrice(total)} <span>/мин</span> </div>
                 </div>
-                <div className='text-center'>
-                    <Button variant='white' size='sm' className='btn-link mt-5 mb-2'>
-                        Place order
-                    </Button>
-                </div>
-            </div>
+                {!!items.length &&
+                <div className='text-center mt-7 mb-5'>
+                    <Link
+                        className='btn btn-white'
+                        href='/checkout'
+                    >Place order</Link>
+                </div>}
+            </div>}
         </div>
     )
 }

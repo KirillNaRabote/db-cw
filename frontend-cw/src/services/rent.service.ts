@@ -10,4 +10,11 @@ export const RentService = {
             method: 'GET'
         })
     },
+
+    async getByUserId() {
+        return instance<IRent[]>({
+            url: `${RENTS}/by-user`,
+            method: 'GET'
+        })
+    }
 }

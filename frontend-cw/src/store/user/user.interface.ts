@@ -6,6 +6,7 @@ export interface IRole {
 
 export interface IUserState {
     email: string
+    idRole: number
     role: IRole
 }
 
