@@ -1,11 +1,11 @@
-import { IsDate, IsNumber } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class RentDto {
-  @IsDate()
-  startTime: Date
+  @IsString()
+  startTime: string
 
-  @IsDate()
-  endTime: Date
+  @IsString()
+  endTime: string
 
   @IsNumber()
   idEquipment: number

@@ -23,11 +23,11 @@ export default function MyRents({}: IMyOrders) {
                         key={rent.idRent}
                         className='rounded-lg bg-white shadowflex gap-10 p-7 my-7'
                     >
-                        <span>#{rent.idRent}</span>
+                        <span>#{rent.idRent} </span>
                         <span>{
                             new Date(rent.createdAt).toLocaleDateString('ru-Ru')
                         }</span>
-                        <span>{convertPrice(rent.equipment.price)}</span>
+                        <span>{convertPrice(rent?.equipment?.price)}</span>
                     </div>
                 ))
             ) : (

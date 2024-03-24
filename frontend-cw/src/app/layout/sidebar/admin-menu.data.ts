@@ -4,7 +4,7 @@ import {getAdminUrl} from "@/config/url.config";
 export const ADMIN_MENU: IMenuItem[] = [
     {
         label: 'Dashboard',
-        href: getAdminUrl('/')
+        href: getAdminUrl()
     },
     {
         label: 'Equipments',
