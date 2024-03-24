@@ -20,7 +20,8 @@ import { path } from "app-root-path";
       rootPath: `${path}/uploads`,
       serveRoot: '/uploads'
     }),
-    ConfigModule.forRoot(), AuthModule, UserModule, EquipmentModule, FeedbackModule, RentModule, RentalPointModule, StatisticsModule, PaginationModule],
+    ConfigModule.forRoot(), AuthModule, UserModule, EquipmentModule, FeedbackModule, RentModule, RentalPointModule, StatisticsModule, PaginationModule
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
